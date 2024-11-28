@@ -12,4 +12,5 @@ npm start
 #### INFOS
 - Un user peut uniquement modifier/supprimer SON compte
 
-- Pour ajouter un personnage, il faut aller sur la homepage, cliquer sur l'icone d'un personnage et cliquer sur "add", close permet de revenir à la position initiale
+- Pour ajouter un personnage, il faut aller sur la homepage, cliquer sur l'icone d'un personnage et cliquer sur "add"
+- Le bouton close permet de revenir à la position initiale
