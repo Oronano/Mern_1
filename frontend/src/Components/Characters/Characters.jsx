@@ -12,7 +12,11 @@ const Characters = () => {
                 const response = await axios.get(
                     `http://localhost:8080/characters?category=${selectedCategory}`
                 );
-                setCharacters(response.data);
+                const charactersWithUserCount = response.data.map((item) => ({
+                    ...item.character,
+                    userCount: item.userCount,
+                }));
+                setCharacters(charactersWithUserCount);
             } catch (error) {
                 console.error(
                     "There was an error fetching the characters!",
@@ -24,22 +28,9 @@ const Characters = () => {
         fetchCharacters();
     }, [selectedCategory]);
 
-    const handleDelete = async (id) => {
-        try {
-            await axios.delete(`http://localhost:8080/characters/${id}`);
-            // Refetch characters after deletion
-            const response = await axios.get(
-                `http://localhost:8080/characters?category=${selectedCategory}`
-            );
-            setCharacters(response.data);
-        } catch (error) {
-            console.error("There was an error deleting the character!", error);
-        }
-    };
-
     return (
         <div>
-            <h1>Characters</h1>
+            <h1>All Characters added by Users</h1>
             <Filter
                 selectedCategory={selectedCategory}
                 setSelectedCategory={setSelectedCategory}
@@ -48,10 +39,11 @@ const Characters = () => {
                 {characters.map((character) => (
                     <li key={character._id}>
                         <div>
-                            {character.name}
-                            <button onClick={() => handleDelete(character._id)}>
-                                Delete
-                            </button>
+                            <p>{character.name}</p>
+                            <p>
+                                Number of User who added this character:{" "}
+                                {character.userCount}
+                            </p>
                         </div>
                     </li>
                 ))}

@@ -22,7 +22,27 @@ const getAllCharacters = async (req, res) => {
                 $options: "i",
             };
         }
-        const characters = await Character.find(filter);
+
+        const characters = await Character.aggregate([
+            { $match: filter },
+
+            {
+                $group: {
+                    _id: "$name",
+                    character: { $first: "$$ROOT" },
+                    userCount: { $sum: 1 },
+                },
+            },
+
+            {
+                $project: {
+                    _id: 0,
+                    character: 1,
+                    userCount: 1,
+                },
+            },
+        ]);
+
         res.send(characters);
     } catch (error) {
         res.status(400).send({ error: error.message });
