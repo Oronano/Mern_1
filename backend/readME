@@ -1,0 +1,8 @@
+back
+npm init -y
+
+npm i dotenv jsonwebtoken cors express mongoose bcrypt
+
+front
+npx create-react-app frontend
+npm i react-router-dom axios

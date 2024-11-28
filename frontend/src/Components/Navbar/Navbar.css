@@ -1,0 +1,24 @@
+.simplenavbar {
+    background-color: #333;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.simplenavbar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.simplenavbar a {
+    display: block;
+    color: white;
+    padding: 14px 20px;
+}
+
+.simplenavbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
